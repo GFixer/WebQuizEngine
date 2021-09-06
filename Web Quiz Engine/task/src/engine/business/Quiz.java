@@ -29,7 +29,8 @@ public class Quiz {
     @NotEmpty
     @Size(min = 2)
     @Column
-    private String[] options;
+    @ElementCollection
+    private List<String> options;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column
@@ -44,7 +45,7 @@ public class Quiz {
     public Quiz(String title, String text, String[] options, List<Integer> answer) {
         this.title = title;
         this.text = text;
-        this.options = options;
+        this.options = List.of(options);
         this.answer = answer;
     }
 
@@ -86,11 +87,11 @@ public class Quiz {
     }
 
     public String[] getOptions() {
-        return options;
+        return options.toArray(new String[0]);
     }
 
     public void setOptions(String[] options) {
-        this.options = options;
+        this.options = List.of(options);
     }
 
     @JsonIgnore
@@ -108,7 +109,7 @@ public class Quiz {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", text='" + text + '\'' +
-                ", options=" + Arrays.toString(options) +
+                ", options=" + options.toString() +
                 ", answer=" + answer +
                 '}';
     }
