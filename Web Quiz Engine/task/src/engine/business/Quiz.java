@@ -7,7 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -39,7 +38,7 @@ public class Quiz {
 
 
     @ManyToOne
-    @JoinColumn(name = "userID")
+    @JoinColumn()
     private User user;
 
     public Quiz(String title, String text, String[] options, List<Integer> answer) {

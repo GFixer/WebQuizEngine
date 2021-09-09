@@ -14,15 +14,17 @@ public class QuizCompletionService {
     private final QuizCompletionRepository quizCompletionRepository;
 
     @Autowired
-    public QuizCompletionService(QuizCompletionRepository quizCompletionRepository) {
+    public QuizCompletionService(QuizCompletionRepository quizCompletionRepository, UserService userService,
+                                 IAuthenticationFacade authenticationFacade) {
         this.quizCompletionRepository = quizCompletionRepository;
+        this.userService = userService;
+        this.authenticationFacade = authenticationFacade;
     }
 
-    @Autowired
+    final
     UserService userService;
 
-    @Autowired
-    private IAuthenticationFacade authenticationFacade;
+    private final IAuthenticationFacade authenticationFacade;
 
     public Page<QuizCompletion> findCompleted(Integer page, User currentUser) {
         Pageable paging = PageRequest.of(page, 10, Sort.by("completedAt").descending());

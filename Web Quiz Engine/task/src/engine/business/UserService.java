@@ -11,12 +11,12 @@ import java.util.Optional;
 public class UserService {
     private final UserRepository userRepository;
 
-    @Autowired
-    private PasswordEncoder getEncoder;
+    private final PasswordEncoder getEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder getEncoder) {
         this.userRepository = userRepository;
+        this.getEncoder = getEncoder;
     }
 
     public User registerNewUserAccount(User user) {
@@ -32,7 +32,7 @@ public class UserService {
     }
 
     public User findUserByEmail(String email) {
-        return userRepository.findByEmail(email).get();
+        return userRepository.findByEmail(email).orElse(null);
     }
 
 

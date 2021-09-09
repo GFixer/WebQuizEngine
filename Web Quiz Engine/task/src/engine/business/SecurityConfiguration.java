@@ -17,11 +17,14 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
 
-    @Autowired
-    private DataSource dataSource;
+    private final DataSource dataSource;
+
+    public SecurityConfiguration(UserDetailsService userDetailsService, DataSource dataSource) {
+        this.userDetailsService = userDetailsService;
+        this.dataSource = dataSource;
+    }
 
     @Bean
     public PasswordEncoder getEncoder() {

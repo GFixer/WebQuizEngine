@@ -14,15 +14,17 @@ public class QuizService {
     private final QuizRepository quizRepository;
 
     @Autowired
-    public QuizService(QuizRepository quizRepository) {
+    public QuizService(QuizRepository quizRepository, UserService userService,
+                       IAuthenticationFacade authenticationFacade) {
         this.quizRepository = quizRepository;
+        this.userService = userService;
+        this.authenticationFacade = authenticationFacade;
     }
 
-    @Autowired
+    final
     UserService userService;
 
-    @Autowired
-    private IAuthenticationFacade authenticationFacade;
+    private final IAuthenticationFacade authenticationFacade;
 
     public Quiz save(Quiz quiz) {
         Authentication authentication = authenticationFacade.getAuthentication();
