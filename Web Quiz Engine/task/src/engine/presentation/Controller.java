@@ -83,8 +83,6 @@ public class Controller {
             quizCompletionService.save(quizCompletion);
             return new QuizResponse(true, "Congratulations, you're right!");
         } else {
-            System.out.println(quiz);
-            System.out.println(answer);
             return new QuizResponse(false, "Wrong answer! Please, try again.");
         }
     }
