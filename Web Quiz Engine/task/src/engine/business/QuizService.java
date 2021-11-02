@@ -21,8 +21,7 @@ public class QuizService {
         this.authenticationFacade = authenticationFacade;
     }
 
-    final
-    UserService userService;
+    private final UserService userService;
 
     private final IAuthenticationFacade authenticationFacade;
 
@@ -48,5 +47,4 @@ public class QuizService {
     public void deleteQuizById(Long id) {
         quizRepository.deleteById(id);
     }
-
 }
